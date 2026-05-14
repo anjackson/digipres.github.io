@@ -20,15 +20,23 @@ layout: simple_page
     </tr>
     <tr>
       <th scope="row">Homepage</th>
-      <td>{% if page.homepage_url %}<a href="{{ page.homepage_url }}">Visit</a>{% endif %}</td>
+      <td>{% if page.homepage_url %}<a href="{{ page.homepage_url }}">{{ page.homepage_url }}</a>{% endif %}</td>
     </tr>
     <tr>
       <th scope="row">Forum</th>
-      <td>{% if page.forum_url %}<a href="{{ page.forum_url }}">Visit</a>{% endif %}</td>
+      <td>
+        {% if page.forum_url %}
+          {% if page.forum_url contains "http:" or page.forum_url contains "https:" %}
+          <a href="{{ page.forum_url }}">{{ page.forum_url }}</a>
+          {% else %}
+            {{ page.forum_url }}
+          {% endif %}
+        {% endif %}
+      </td>
     </tr>
     <tr>
       <th scope="row">Contact Email Address</th>
-      <td>{% if page.email %}<a href="mailto:{{ page.email }}?Subject={{page.title}}">{{ page.email }}</a>{% endif %}</td>
+      <td>{% if page.email %}<a href="mailto:{{ page.email }}?Subject={{page.title | escape }}">{{ page.email }}</a>{% endif %}</td>
     </tr>
   </tbody>
 </table>
