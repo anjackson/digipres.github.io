@@ -66,7 +66,10 @@ Recordings from {{w.start | replace: "-",":" }}-{{w.end | replace: "-",":" }} UT
       {%- endif -%}
     </p>
     {% if p.slides -%}
-    <a href="{{ p.slides }}" class="btn btn-primary mt-auto align-self-end">Download Slides</a>
+    <a href="{{ p.slides }}" class="btn btn-primary mt-auto align-self-end">Slides</a>
+    {%- endif %}
+    {% if p.link -%}
+    <a href="{{ p.link }}" class="btn btn-primary mt-auto align-self-end">Link</a>
     {%- endif %}
       
     </div>
