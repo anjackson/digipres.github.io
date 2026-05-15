@@ -15,18 +15,18 @@ You can add details of your own workflows to the [Community-Owned Workflows](htt
 
 The [Digital Preservation Coalition](https://dpconline.org/) has been running a series of "Workflow Webinars" for many years. These events are open to all, not just DPC members, and have become a popular forum for sharing the practical details involved in implementing digital preservation processes.  If you'd like to share your workflows look out for the call for contributions from the DPC, or get in touch with them directly via [the contact details on their web site](https://www.dpconline.org/about/contact-us).
 
-The webinars from previous years are available 
-on the DPC Website...
 
-- __2026:__ [Digital Preservation Workflow Webinars 2026](https://www.dpconline.org/events/eventdetail/661/-/digital-preservation-workflow-webinars-2026)
-- __2025:__ [Digital Preservation Workflow Webinars 2025](https://www.dpconline.org/events/eventdetail/434/-/digital-preservation-workflow-webinars-2025)
-- __2024:__ [Digital Preservation Workflow Webinars 2024](https://www.dpconline.org/events/eventdetail/254/-/digital-preservation-workflow-webinars-2024)
-- __2023:__ [Digital Preservation Workflow Webinars 2023](https://www.dpconline.org/events/eventdetail/114/-/digital-preservation-workflow-webinars-2023)
-    - See also [Workflow:Abrdn Digital Preservation Workflow - COPTR](https://coptr.digipres.org/index.php/Workflow:Abrdn_Digital_Preservation_Workflow)
-- __2022:__ [Digital Preservation Workflow Webinars and COW-a-thon 2022](https://www.dpconline.org/events/past-events/webinars/dp-workflows-cowathon-2022) (recordings currently available to DPC members only)
-- __2021:__ [Digital Preservation Workflows Webinar Series and COW-a-thon 2021](https://www.dpconline.org/events/past-events/webinars/workflow-webinars-and-cow) (recordings currently available to DPC members only)
+{% assign wfs = site.pages | where_exp: "item", "item.path contains 'workflow-webinars/'" | sort: "title" %}
 
-## Workflows & Webinars as Structured Data
+<ul>
+{% for item in wfs reversed %}
+{% if item.path != 'workflow-webinars/index.md' %}
+<li><a href="{{ item.url }}">{{ item.title }} ({{item.start | date: '%-d %b' }} - {{item.end | date: '%-d %b %Y' }})</a></li>
+{% endif %}
+{% endfor %}
+</ul>
+
+## Workflows as Structured Data
 
 <div class="alert alert-warning" role="alert">
   This is an experimental addition to the site, and feedback is very welcome. You can read <a href="https://github.com/orgs/digipres/discussions/63" class="alert-link">this GitHub discussion</a> to find out more about the status of this experiment.
@@ -34,24 +34,12 @@ on the DPC Website...
 
 As part of the [Registries of Good Practice project](https://www.dpconline.org/digipres/collaborative-projects/registries-of-good-practice), we are also experimenting with a different ways of documenting workflows. Here are the example(s) we've added or copied over from the COPTR wiki:
 
-{% assign wfs = site.pages | where_exp: "item", "item.path contains 'workflows/'" %}
+{% assign wfs = site.pages | where_exp: "item", "item.path contains 'workflows/'" | sort: "title" %}
 
 <ul>
-{% for item in wfs %}
+{% for item in wfs  %}
 {% if item.path != 'workflows/index.md' %}
 <li><a href="{{ item.url }}">{{ item.title }}</a></li>
-{% endif %}
-{% endfor %}
-</ul>
-
-We are also experimenting with re-hosting the workflow webinars as more structured data:
-
-{% assign wfs = site.pages | where_exp: "item", "item.path contains 'workflow-webinars/'" %}
-
-<ul>
-{% for item in wfs %}
-{% if item.path != 'workflow-webinars/index.md' %}
-<li><a href="{{ item.url }}">{{ item.title }} ({{item.start | date: '%-d %b' }} - {{item.end | date: '%-d %b %Y' }})</a></li>
 {% endif %}
 {% endfor %}
 </ul>
